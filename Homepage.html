@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html>
+<title>ระบบจัดตารางเวลา</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-874">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link rel="stylesheet" type="text/css" href="css\to do list.css">
+ <head>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+  font-family: $font-family;
+    font-size: $font-size;
+    background-size: 200% 100% !important;
+    animation: move 10s ease infinite;
+    transform: translate3d(0, 0, 0);
+    background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
+    height: 100vh
+
+}
+
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+  
+}
+@keyframes move {
+    0% {
+        background-position: 0 0
+    }
+
+    50% {
+        background-position: 100% 0
+    }
+
+    100% {
+        background-position: 0 0
+    }
+}
+.form__input {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    font-family: $font-family;
+    font-size: 15px;
+    -webkit-appearance: none;
+    border: 0;
+    outline: 0;
+    transition: 0.3s;
+    
+    &:focus {
+        background: darken(#fff, 3%);
+    }
+}
+.btn {
+    display: block;
+      width:30%;
+      height: 50px;
+      border: none;
+      background: linear-gradient(70deg,#FBD70F,#F5E380,#FBD70F);
+      background-size: 100%;
+      color: black;
+      outline: none;
+      cursor: pointer;
+      margin: 200px 440px 0px;
+      border-radius: 50px;
+      transition: .5s;
+      font-size: 18px;
+      letter-spacing: 1px;
+
+}
+      .btn:hover{
+      background-position: right;
+  }
+    
+    &:hover {
+        background: darken($color-primary, 5%);
+    }
+}
+.form {
+    margin-top: 10px;
+    border-radius: 6px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translate3d(0, 500px, 0);
+    animation: arrive 500ms ease-in-out 0.9s forwards;
+}
+.form--no {
+    animation: NO 1s ease-in-out;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+.form__input {
+    display: block;
+    width: 40%;
+    padding: 20px;
+    font-family: $font-family;
+    font-size: 15px;
+    -webkit-appearance: none;
+    border: 0;
+    outline: 0;
+    transition: 0.3s;
+    margin: 10px 380px 0px;
+    
+    &:focus {
+        background: darken(#fff, 3%);
+    }
+}
+
+.slide_show {
+
+  
+  min-height: 100%;
+
+    /* responsive */
+    display: block;
+    width: 100%;
+}
+.slide_show img {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+
+    /* responsive image */
+    width: 100%;
+    max-width: 100%;  
+    height: auto;
+    
+    /* speed ของ effect */
+    transition:2s;
+
+    /* fade out*/
+    opacity: 0;
+}
+.slide_show img.select {
+    /* fade in  */
+    opacity: 1;
+     position: fixed;
+     background-position: center;
+  background-size: cover;
+}
+
+
+* {
+  box-sizing: border-box;
+
+}
+ul {
+  margin: 50;
+  padding: 0;
+}
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #5A676D;
+  font-size: 18px;
+  transition: 0.2s;
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* Set zebra-stripes: all odd list items to a different color */
+ul li:nth-child(odd) {
+background: #56646A;
+}
+ul li:hover {
+  background: #B3B485;
+}
+ul li.checked {
+  background: teal;
+  color: white;
+  text-decoration: line-through;
+}
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+/* Style the close button */
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+.close:hover {
+  background-color: crimson;
+  color: white;
+}
+.header {
+  background-color: #768390;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+}
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: linear-gradient(70deg,#FBD70F,#F5E380,#FBD70F);
+  color: black;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+.addBtn:hover {
+  background-color: #bbb;
+}
+#clear-list{
+  width: 10%;
+  font-weight: bold;
+  
+  font-size: xx-large;
+  font-family: $font-family;
+  margin: 40px 35%;
+ 
+  display: block;
+      width: 30%;
+      height: 50px;
+      border: none;
+      background: linear-gradient(70deg,#317485,#CB89B7,#317485);
+      background-size: 200%;
+      color: white;
+      outline: none;
+      cursor: pointer;
+      margin: 50px 320px 0px;
+      border-radius: 50px;
+      transition: .5s;
+      font-size: 18px;
+      letter-spacing: 1px;
+}
+#clear-list:hover{
+ 
+  color: #FF8787;
+}
+#list-form {
+      width: 950px;
+     
+      padding: 80px 40px;
+    position: center;
+   
+      left: 50%;
+      top: 50%;
+      
+      margin: 20px 130px;
+}
+.boundary
+{
+width:60%;
+
+ padding: 80px 0px;
+margin: 20px 250px;
+}
+
+
+.message {
+    margin: 20px 0;
+    padding: 10px 30px 5px 20px;
+    min-height: 22px;
+}
+.message p {
+    margin: 0 0 0.45em;
+}
+
+ 
+.message.important {
+    border: 3px solid black;
+    background:#F7DE2A url(../images/i-important.png) no-repeat 8px 7px;
+  color: red !important;
+}
+ 
+.notification .badge {
+  position: absolute;
+  top: 5px;
+  right: 167px;
+  padding: 0px 10px ;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+}
+
+.closebtn {
+
+  margin-left: 1px;
+  color: red;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  height: 0px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+.messageimportant {
+
+left: 15%;
+
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 330px;
+  top: 2200px;
+  width: 50%; /* Full width */
+  height: 40%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #3ED37F;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+#myTable {
+  border-collapse: collapse;
+  width: 80%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid white;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #3B98A7;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-dark-gray w3-card " id="myNavbar">
+    <img src="schedule.png" alt="Jane" style="width:4%">
+    <a href="#home" class="w3-bar-item w3-button w3-wide w3-text-white">ระบบจัดตารางเวลา</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="#search" class="w3-bar-item w3-button w3-text-white"><i class="fa fa-search"></i> Search</a>
+      
+        <a href="#add" class="w3-bar-item w3-button w3-text-white"><i class="fa fa-plus-square-o"></i> Add subject</a>
+         <a href="#delete" class="w3-bar-item w3-button w3-text-white"><i class="fa fa-minus-square-o"></i> Delete subject</a>
+       
+     
+      <a href="#pricing" class=" notification w3-bar-item w3-button w3-text-white "><i class="fa fa-bell-o"></i> Notification
+      <span class="badge">1</span>
+  </a>
+      <a href="#about" class="w3-bar-item w3-button w3-text-white"> About</a>
+      <a href="Login.html" class="w3-bar-item w3-button w3-text-white"><i class="fa fa-sign-out"></i> Logout</a>
+
+      
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+   <a href="#add" onclick="w3_close()" class="w3-bar-item w3-button">Add subject</a>
+  <a href="#search" onclick="w3_close()" class="w3-bar-item w3-button">Search</a>
+  <a href="#pricing" onclick="w3_close()" class="w3-bar-item w3-button">Notification</a>
+  <a href="#pricing" onclick="w3_close()" class="w3-bar-item w3-button">Log out</a>
+   <a href="#delete" onclick="w3_close()" class="w3-bar-item w3-button">Delete subject</a>
+    
+</nav>
+
+
+
+
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="slide_show" id="ss_demo">
+    <img src="book1.jpg" >
+    <img src="book2.jpg" >
+    <img src="book3.jpg">
+    <img src="book4.jpg">
+    <img src="book6.jpg">
+</div>
+
+  <div class="w3-display-left w3-text-white" style="padding:48px">
+    <span class=" w3-jumbo w3-hide-small">ระบบจัดตารางเวลา</span><br>
+    <span class="w3-xxlarge w3-hide-large w3-hide-medium">Start something that matters</span><br>
+    <span class="w3-large">จะช่วยให้ชีวิตของคุณ สะดวกสบายมากยิ่งขึ้น</span>
+    <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Learn more</a></p>
+  </div> 
+  
+</header>
+
+<!-- About Section -->
+<div class="w3-container" style="padding:100px 16px" id="about">
+  <h3 class="w3-center">ฟังก์ชั่นในการใช้งานระบบจัดตารางเวลา</h3>
+  
+  <div class="w3-row-padding w3-center" style="margin-top:64px">
+    <div class="w3-quarter">
+      <i class="fa fa-calendar w3-margin-bottom w3-jumbo w3-center"></i>
+      <p class="w3-large">ระบบจัดตารางเวลา คือ</p>
+      <p>จะช่วยเราในการบันทึก แจ้งเตือน และสามารถค้นหารายวิชาที่ต้องส่งงานได้ ช่วยแก้ปัญหาในการลืมทำงานของเราได้อย่างมีประสิทธิภาพ แบ่งเป็น 3 ฟังก์ชั่นในการใช้งาน ดังนี้</p>
+    </div>
+
+      <div class="w3-quarter">
+      <i class="fa fa-search w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Search</p>
+      <p>ระบบนี้จะสามารถค้นหารายวิชาได้ว่า วิชานี้มีการส่งงานหรือไม่ ถ้ามีมีส่งวันไหนบ้าง ตามที่เราได้เพิ่มรายวิชาไว้</p>
+    </div>
+
+    <div class="w3-quarter">
+      <i class="fa fa-plus-square-o w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Add subject</p>
+      <p>ระบบนี้สามารถเพิ่มรายวิชาที่มีการส่งงาน ส่งการบ้าน เพื่อที่จะช่วยบันทึกช่วยจำแทนเราได้ เพิ่มความสะดวกสะบายมากยิ่งขึ้น</p>
+    </div>
+
+  
+
+    
+    <div class="w3-quarter">
+      <i class="fa fa-minus-square-o w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Delete subject</p>
+      <p>ระบบนี้สามารถลบงานที่เราได้เพิ่มรายวิชาได้ เพราะเราอาจจะกรอกข้อมูลผิด เราก็สามารถลบแล้วเพิ่มไปใหม่ได้</p>
+    </div>
+
+     <div class="w3-quarter">
+      <i class="w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large"></p>
+      <p></p>
+
+
+
+
+    </div>
+     <div class="w3-quarter">
+      <i class="fa fa-bell-o w3-margin-bottom w3-jumbo"></i>
+      <p class="w3-large">Notification</p>
+      <p>ระบบนี้สามารถช่วยเตือนเราได้ว่ามีงานชิ้นไหนที่ใกล้ถึงเวลาที่จะต้องทำการส่งแล้ว เพื่อที่จะไม่ให้เราลืม ฟังก์ชั่นนี้จะคอยช่วยเตือนเรา</p>
+    </div>
+  </div>
+
+
+
+
+<!-- Team Section -->
+<div class="w3-container  w3-card w3-blue-gray " style="padding:18px 16px" id="search">
+  <h1 class="w3-center"><i class="fa fa-search"></i> Search</h1>
+  <p class="w3-center w3-large">ค้นหารายวิชาที่ได้ทำการเพิ่มวิชาที่ต้องส่งงาน</p>
+
+  <form class="form">
+        <div class="form__group">
+            <input type="text" placeholder="Subject ID" id="myInput" onkeyup="myFunction()" class="form__input" />
+            <br> </br>
+             <br> </br>
+
+           <center><table id="myTable"></center>
+  <tr class="header">
+    <th style="width:20%;">Subject ID</th>
+    <th style="width:30%;">Subject name</th>
+    <th style="width:30%;">งานที่บันทึก</th>
+     <th style="width:20%;">ส่งวันที่</th>
+  </tr>
+  <tr>
+    <td>cs234</td>
+    <td>COMPUTER NETWORK AND SECURITY</td>
+    <td>Assignment 1</td>
+    <td>20 พฤษภาคม 2562</td>
+  </tr>
+  <tr>
+    <td>cs251</td>
+    <td>DATABASE SYSTEMS 1</td>
+    <td>Assignment 1</td>
+    <td>20 พฤษภาคม 2562</td>
+  </tr>
+  <tr>
+    <td>cs288</td>
+    <td>INTRODUCTION TO SOFTWARE TESTING</td>
+    <td>Assignment 3</td>
+    <td>22 พฤษภาคม 2562</td>
+  </tr>
+  <tr>
+    <td>cs288</td>
+    <td>INTRODUCTION TO SOFTWARE TESTING</td>
+    <td>Assignment 2</td>
+    <td>27 พฤษภาคม 2562</td>
+  </tr>
+  <tr>
+    <td>cs251</td>
+    <td>DATABASE SYSTEMS 1</td>
+    <td>Assignment 2</td>
+    <td>22 พฤษภาคม 2562</td>
+  </tr>
+  <tr>
+    <td>cs246</td>
+    <td>DATA VISUALIZATION</td>
+    <td>Assignment 3</td>
+    <td>19 พฤษภาคม 2562</td>
+  </tr>
+  <tr>
+    <td>cs234</td>
+    <td>COMPUTER NETWORK AND SECURITY</td>
+    <td>Socket programming</td>
+    <td>16 พฤษภาคม 2562</td>
+  </tr>
+  <tr>
+    <td>cs111</td>
+    <td>OBJECT-ORIENTED CONCEPTS</td>
+    <td>Assignment 1</td>
+    <td>29 พฤษภาคม 2562</td>
+  </tr>
+
+</table>
+
+        </div>
+
+    
+        
+       
+         <br> </br>
+<br> </br>
+
+
+    
+    </form>
+</div>
+<!-- Promo Section "Statistics" -->
+
+
+<!-- Work Section -->
+<div class=" w3-container w3-panel w3-card w3-blue-gray  " style="padding:1px 16px" id="add">
+
+  <h1 class="w3-center"><i class="fa fa-plus-square-o"></i> Add subject</h1>
+  <p class="w3-center w3-large">เพิ่มรายวิชาที่ต้องส่งงาน</p>
+  <form class="form">
+        <div class="form__group">
+            <input type="text" placeholder="Subject name" class="form__input" />
+        </div>
+        
+        <div class="form__group">
+            <input type="text" placeholder="Subject ID" class="form__input" />
+        </div>
+
+        <div class="form__group">
+            <input type="email" placeholder="Description" class="form__input" />
+        </div>
+        
+        <div class="form__group">
+            <input type="date" placeholder="Due date" class="form__input" />
+        </div>
+
+        <div class="form__group">
+            <input type="time" placeholder="Date time" class="form__input" />
+        </div>
+        <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <center><h3>ข้อมูลของคุณได้ทำการบันทึกเรียบร้อย</h3></center>
+  </div>
+
+</div>
+        <br> </br>
+        <br> </br>
+        <br> </br>
+        <br> </br>
+        <button class="btn" id="myBtn" type="button"><a >Submit</a></button>
+        <br> </br>
+        <br> </br>
+    </form>
+</div>
+ 
+
+<!-- Skills Section -->
+
+
+<!-- Pricing Section -->
+<div class="w3-container w3-center w3-panel w3-card w3-blue-gray " style="padding:100px 16px" id="delete">
+  <h1><i class="fa fa-minus-square-o"></i> Delete subject</h1>
+  <p class="w3-large">ลบงานที่ไม่ต้องการที่จะบันทึก</p>
+
+<div class="w3-container">
+
+  <ul class=" w3-card-4 w3-hover-shadow w3-dark-gray">
+    <h4 class="w3-display-container">CS251 Project Phase 3 ส่งวันที่ 15 พฤษภาคม 2562 ภายในเวลา 23.59 น. <span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></h4>
+<p></p>
+
+    <h4 class="w3-display-container">CS251 Assignment 4 ส่งวันที่ 12 พฤษภาคม 2562 ภายในเวลา 23.59 น. <span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></h4>
+<p></p>
+    <h4 class="w3-display-container">CS288 Assignment 3 ส่งวันที่ 22 พฤษภาคม 2562 ภายในเวลา 23.59 น. <span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></h4>
+  </ul>
+</div>
+
+
+
+</div>
+<div class="w3-container w3-center w3-panel w3-card w3-blue-gray " style="padding:100px 16px" id="pricing">
+  <h1><i class="fa fa-bell-o"></i> Notification</h1>
+  <p class="w3-large">แจ้งเตือนงานที่ใกล้ถึงเวลาในการส่งงาน</p>
+
+ 
+<div class="boundary">
+
+          
+          
+            <div role="alert" class="message important w3-card w3-panel w3-center w3-container">
+             
+               <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+           <p class="fa fa-exclamation-circle" style="font-size:48px;color:red"><h3>แจ้งเตือน</h3></p>
+           <p>การบ้านวิชา CS251 Project Phase 3 ส่งวันที่ 15 พฤษภาคม 2562</p>
+           </div>
+         
+</div>
+
+
+
+
+  <br></br>
+   <br></br>
+    <br></br>
+     <br></br>
+ 
+ </div>
+<div>
+
+
+
+
+
+
+
+
+
+ <footer class="w3-center w3-dark-gray w3-padding-64 w3-card w3-panel w3-container">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+ 
+  <p>จัดทำโดยกลุ่ม To be continue</p>
+
+</footer>
+<br></br>
+<center><iframe style="overflow:hidden;border:0;margin:0;padding:0;width:175px;height:80px;"src="http://www.clocktag.com/html5/d171red1.html"></iframe></center>
+
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+
+<script>
+  
+function playSlideShow(id) {
+    function show(n) {
+       /* รูปทั้งหมด */
+       var imgs = document.getElementById(id).getElementsByTagName('img');
+       var l = imgs.length;
+       
+        /* ถึงรูปสุดท้าย กลับไปรูปแรก */
+       n = n == l ? 0 : n;
+   
+        for (var a = 0; a < l; a++) {
+            /* image */
+            var img = imgs[a];
+            if (a == n) {
+                 /* รูปที่ต้องการแสดง */
+                 img.className = 'select';
+            } else {
+                 /* รูปอื่นๆ clear class */
+                 img.className = '';
+            }
+       }
+
+       /* คืนค่ารูปที่กำลังแสดง */
+       return n;
+    }
+
+    /* แสดงรูปแรก */
+    var position = show(0);
+
+    /* จับเวลาเปลี่ยนรูปภาพทุก 3 วินาที  (3*1000ms) */
+    window.setInterval(function() {
+        /* แสดงรูปถัดไป */
+        position = show(position + 1);
+    }, 3000);
+}
+/* แสดง slide show */
+playSlideShow('ss_demo');
+
+
+
+</script>
+
+<script>
+  
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+  var div = this.parentElement;
+  div.style.display = "none";
+  }
+}
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+  ev.target.classList.toggle('checked');
+  }
+}, false);
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+  alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+        var div = this.parentElement;
+        div.style.display = "none";
+    }
+  }
+}
+//Clearing the list
+function removeAll(){
+  var lst = document.getElementsByTagName("ul");
+    lst[0].innerHTML = "";
+}
+
+</script>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+</body>
+</html>
+
